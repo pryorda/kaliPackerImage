@@ -45,7 +45,7 @@ fi
 export UBUNTU_AUTHORIZED_KEY="$(cat ${PACKER_UBUNTU_AUTHORIZED_KEY})"
 echo "UBUNTU_AUTHORIZED_KEY=${UBUNTU_AUTHORIZED_KEY}"
 echo "==> Building ESX (vmware-iso) VM ${VIRTUAL_MACHINE_NAME}"
-packer build --only=vmware-iso ubuntu.json
+packer build --only=vmware-iso debian.json
 if [ $? -gt 0 ]; then 
   '==> Packer build failed'
   # exit 1
