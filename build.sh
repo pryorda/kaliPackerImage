@@ -46,6 +46,10 @@ export UBUNTU_AUTHORIZED_KEY="$(cat ${PACKER_UBUNTU_AUTHORIZED_KEY})"
 echo "UBUNTU_AUTHORIZED_KEY=${UBUNTU_AUTHORIZED_KEY}"
 echo "==> Building ESX (vmware-iso) VM ${VIRTUAL_MACHINE_NAME}"
 packer build --only=vmware-iso ubuntu.json
+if [ $? -gt 0 ]; then 
+  '==> Packer build failed'
+  # exit 1
+fi
 
 echo '==> Copy shrinkdisk.sh to host'
 scp -i ${SSH_KEY_FILE} -o 'StrictHostKeyChecking=no' shrinkdisk.sh ${VMWARE_SSH_USER}@${REMOTE_BUILD_HOST}:/tmp/shrinkdisk.sh

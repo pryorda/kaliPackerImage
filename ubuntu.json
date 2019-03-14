@@ -25,7 +25,7 @@
         " netcfg/get_hostname={{ .Name }}<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
         " noapic<wait>",
-        " preseed/url=https://raw.githubusercontent.com/boxcutter/debian/master/http/preseed-jessie.cfg",
+        " preseed/url=https://raw.githubusercontent.com/pryorda/kaliPackerImage/master/http/preseed.cfg",
         " -- <wait>",
         "<enter><wait>"
       ],
