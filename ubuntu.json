@@ -5,13 +5,17 @@
       "boot_wait": "5s",
       "boot_command": [
         "<esc><wait>",
-        "/install/vmlinuz noapic ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_file`}} ",
-        "hostname={{ .Name }} ",
-        "auto=true ",
-        "interface=auto ",
-        "domain='' ",
-        "initrd=/install/initrd.gz -- <enter>"
+        "/install/vmlinuz<wait>",
+        " auto",
+        " debian-installer=en_US",
+        " locale=en_US",
+        " keymap=us",
+        " netcfg/get_hostname={{ .Name }}",
+        " netcfg/get_domain='' ",
+        " noapic<wait>",
+        " preseed/url=http://raw.githubusercontent.com/pryorda/kaliPackerImage/master/http/preseed.cfg",
+        " -- <wait>",
+        "<enter><wait>"
       ],
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
@@ -46,7 +50,6 @@
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
         "ethernet0.pcislotnumber": "160",
-        "ethernet0.virtualdev": "vmxnet3",
         "ethernet0.networkname": "{{ user `vmware_network` }}",
         "memsize": "{{ user `memory` }}",
         "numvcpus": "{{ user `cpus` }}"
